@@ -18,7 +18,7 @@ var app = builder.Build();
 
 
 // Pet Controller
-app.MapGet("pets", async ([FromQuery] string? nome, [FromServices] PetContext db) =>
+app.MapGet("pets", async ([FromQuery] string? nome, PetContext db) =>
 {
     if(nome == null) Results.BadRequest();
     var result = await db.Pet.Where(pet => pet.Name.Contains(nome)).ToListAsync();
